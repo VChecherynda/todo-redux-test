@@ -46,14 +46,13 @@ export function reducer(state: AppState = initialState, action: AppAction): AppS
                     status: issue.selected ? action.data.status : issue.status
                 }))
             };
-        case ActionType.UNSELECT_ALL_ISSUES: {
+        case ActionType.UNSELECT_ALL_ISSUES:
             return {
                 issues: state.issues.map(issue => ({
                     ...issue,
                     selected: false
                 }))
             };
-        }
         case ActionType.SELECT_ISSUE:
             return {
                 issues: state.issues.map(issue => {

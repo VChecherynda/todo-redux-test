@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { ActionType } from "../store/types";
 
 export function StatusesForm() {
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("TODO");
 
     const issues = useAppSelector(state => state.issues);
     const dispatch = useAppDispatch();
