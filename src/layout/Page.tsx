@@ -1,13 +1,24 @@
+import { useRef } from "react";
 import { Container } from "react-bootstrap";
 import { List } from "../components/List";    
 import { StatusesForm } from "../widgets";
+import { useOutsideHandler } from "./hooks/useOutsideList";
 
 import { useAppDispatch } from '../store/hooks';
 import { ActionType } from "../store/types";
 import { mockServerDB } from "../store/mock";
 
 export function Page() {
+    const containerRef = useRef(null);
     const dispatch = useAppDispatch();
+
+    const unselectListItems = () => {
+        dispatch({
+            type: ActionType.UNSELECT_ALL_ISSUES
+        });
+    }
+    
+    useOutsideHandler(containerRef, unselectListItems);
 
     setTimeout(() => {
         dispatch({
@@ -17,7 +28,7 @@ export function Page() {
     }, 1000)
 
     return (
-        <Container>
+        <Container ref={containerRef}>
             <List />
             <StatusesForm />
         </Container>

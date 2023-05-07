@@ -14,7 +14,19 @@ interface UpdateIssuesAction {
     data: Issue[]
 }
 
-type AppAction = SaveIssuesAction | UpdateIssuesAction;
+interface SelectIssuesAction {
+    type: ActionType.SELECT_ISSUE
+    data: {
+        isMultiple: boolean,
+        selectedId: string
+    }
+}
+
+interface UnselectAllIssuesAction {
+    type: ActionType.UNSELECT_ALL_ISSUES
+}
+
+type AppAction = SaveIssuesAction | UpdateIssuesAction | SelectIssuesAction | UnselectAllIssuesAction;
 
 export function reducer(state: AppState = initialState, action: AppAction): AppState {
     switch(action.type) {
@@ -28,6 +40,34 @@ export function reducer(state: AppState = initialState, action: AppAction): AppS
         case ActionType.UPDATE_ISSUE_LIST:
             return {
                 issues: action.data
+            };
+        case ActionType.UNSELECT_ALL_ISSUES: {
+            return {
+                issues: state.issues.map(issue => ({
+                    ...issue,
+                    selected: false
+                }))
+            };
+        }
+        case ActionType.SELECT_ISSUE:
+            return {
+                issues: state.issues.map(issue => {
+                    if (issue.id === action.data.selectedId) {
+                        return {
+                            ...issue,
+                            selected: true
+                        }
+                    }
+
+                    if (action.data.isMultiple) {
+                        return issue
+                    }
+
+                    return {
+                        ...issue,
+                        selected: false
+                    }
+                })
             };
         default:
             return state;
