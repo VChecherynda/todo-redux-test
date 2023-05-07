@@ -1,7 +1,5 @@
 import { Page } from "./layout/Page"
-import { Provider } from 'react-redux'
-import store from './store'
-import './App.scss'
+import { Provider, store } from './store'
 
 function App() {
   return (
