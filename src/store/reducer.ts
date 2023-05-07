@@ -15,12 +15,15 @@ interface UpdateIssuesAction {
 }
 
 type AppAction = SaveIssuesAction | UpdateIssuesAction;
-  
+
 export function reducer(state: AppState = initialState, action: AppAction): AppState {
     switch(action.type) {
         case ActionType.SAVE_ISSUE_LIST:
             return {
-                issues: action.data
+                issues: action.data.sort((a,b) => {
+                    const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
+                    return statusOrder[a.status] - statusOrder[b.status];
+                })
             };
         case ActionType.UPDATE_ISSUE_LIST:
             return {
