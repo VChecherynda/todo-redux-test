@@ -1,18 +1,13 @@
-import { Button, Stack } from 'react-bootstrap'
+import { Page } from "./layout/Page"
+import { Provider } from 'react-redux'
+import store from './store'
 import './App.scss'
 
 function App() {
   return (
-    <>
-      <Stack direction="horizontal" gap={2}>
-        <Button as="a" variant="primary">
-          Button as link
-        </Button>
-        <Button as="a" variant="success">
-          Button as link
-        </Button>
-      </Stack>
-    </>
+    <Provider store={store}>
+      <Page />
+    </Provider>
   )
 }
 
