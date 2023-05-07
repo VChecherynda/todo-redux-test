@@ -1,22 +1,24 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const mockServerDB = {
     issues: [
       {
-        id: "1000",
+        id: uuidv4(),
         summary: "Create simple todo list",
         status: "TODO"
       },
       {
-        id: "1001",
+        id: uuidv4(),
         summary: "Fix the bathroom door lock",
         status: "DONE"
       },
       {
-        id: "1002",
+        id: uuidv4(),
         summary: "Pick up laundry",
         status: "IN_PROGRESS"
       },
       {
-        id: "1003",
+        id: uuidv4(),
         summary: "Buy flowers for the girlfriend",
         status: "TODO"
       }
