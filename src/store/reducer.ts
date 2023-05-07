@@ -1,4 +1,4 @@
-import { AppState, ActionType, Issue } from "./types";
+import { AppState, ActionType, Issue, IssueStatus } from "./types";
 
 const initialState: AppState = {
     issues: []
@@ -11,7 +11,9 @@ interface SaveIssuesAction {
   
 interface UpdateIssuesAction {
     type: ActionType.UPDATE_ISSUE_LIST
-    data: Issue[]
+    data: {
+        status: IssueStatus
+    }
 }
 
 interface SelectIssuesAction {
@@ -39,7 +41,10 @@ export function reducer(state: AppState = initialState, action: AppAction): AppS
             };
         case ActionType.UPDATE_ISSUE_LIST:
             return {
-                issues: action.data
+                issues: state.issues.map(issue => ({
+                    ...issue,
+                    status: issue.selected ? action.data.status : issue.status
+                }))
             };
         case ActionType.UNSELECT_ALL_ISSUES: {
             return {

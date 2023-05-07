@@ -12,13 +12,11 @@ export function Page() {
     const containerRef = useRef(null);
     const dispatch = useAppDispatch();
 
-    const unselectListItems = () => {
-        dispatch({
-            type: ActionType.UNSELECT_ALL_ISSUES
-        });
+    const unselectIssues = () => {
+        dispatch({ type: ActionType.UNSELECT_ALL_ISSUES })
     }
-    
-    useOutsideHandler(containerRef, unselectListItems);
+
+    useOutsideHandler(containerRef, unselectIssues);
 
     setTimeout(() => {
         dispatch({
