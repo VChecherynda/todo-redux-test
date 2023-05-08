@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import { IssueItem, getIssues, selectIssue } from '../../entities/issue';
 import { useAppDispatch, useAppSelector } from '../../shared/model';
@@ -6,9 +7,11 @@ export function IssueList() {
     const issues = useAppSelector(getIssues);
     const dispatch = useAppDispatch();
 
-    const onIssueClick = (event) => {
+    const onIssueClick = (event: MouseEvent<HTMLElement>) => {
+        const target = event.target as HTMLElement;
+
         dispatch(selectIssue({
-            selectedId: event.target.id,
+            selectedId: target.id,
             isMultiple: event.ctrlKey
         }))
     }

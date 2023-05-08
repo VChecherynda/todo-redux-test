@@ -18,9 +18,7 @@ export const issueSlice = createSlice({
                     })
         },
         updateSelectedIssues: (state: IssueState, action: UpdateIssuesAction) => {
-            return {
-                issues: 
-                    state.issues
+            state.issues = state.issues
                         .map(issue => ({
                             ...issue,
                             status: issue.selected ? action.payload : issue.status
@@ -29,11 +27,8 @@ export const issueSlice = createSlice({
                             const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
                             return statusOrder[a.status] - statusOrder[b.status];
                         })
-                };
         },
         unselectIssues: (state: IssueState) => {
-            console.log('[unselectIssues 2]')
-
             state.issues = state.issues.map(issue => ({ ...issue, selected: false }))
         },
         selectIssue: (state: IssueState, action: SelectIssuesAction) => {

@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-
-import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
-import { ActionType } from "../../app/store/types";
+import { updateSelectedIssues, IssueStatus } from "../../entities/issue"
+import { useAppDispatch, useAppSelector } from "../../shared/model";
 
 export function StatusForm() {
     const [status, setStatus] = useState("TODO");
@@ -10,17 +9,12 @@ export function StatusForm() {
     const issues = useAppSelector(state => state.issues);
     const dispatch = useAppDispatch();
     
-    const onSelectStatus = (event) => {
+    const onSelectStatus = (event: ChangeEvent<HTMLSelectElement>) => {
         setStatus(event.target.value)
     }
 
     const updateStatus = () => {
-        dispatch({
-            type: ActionType.UPDATE_ISSUE_LIST,
-            data: {
-                status
-            }
-        })
+        dispatch(updateSelectedIssues(status as IssueStatus))
     }
 
     const isIssuesSelected = issues.some(issue => issue.selected === true)
@@ -28,7 +22,7 @@ export function StatusForm() {
     return (
         isIssuesSelected ? (
             <Form>
-                <Form.Select aria-label="Default select example" onChange={onSelectStatus}>
+                <Form.Select aria-label="Status select" onChange={onSelectStatus}>
                     <option value="TODO">TODO</option>
                     <option value="IN_PROGRESS">IN PROGRESS</option>
                     <option value="DONE">DONE</option>

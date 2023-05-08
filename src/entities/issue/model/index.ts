@@ -4,4 +4,4 @@ export {
     unselectIssues,
     selectIssue,
     getIssues
-} from "./slice"
+} from "./slice";

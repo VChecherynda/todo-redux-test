@@ -1,11 +1,12 @@
+import { MouseEvent } from 'react';
 import { Stack } from 'react-bootstrap';
-import { IssueStatus } from "../../../../shared/types";
+import { IssueStatus } from "../../../../entities/issue";
 
 interface IssueItemProps {
     id: string
     summary: string
     status: IssueStatus
-    onClick: () => void
+    onClick: (event: MouseEvent<HTMLElement>) => void
 }
 
 export function IssueItem({ id, summary, status, onClick }: IssueItemProps) {

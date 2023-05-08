@@ -1,4 +1,11 @@
-import { Issue, IssueStatus } from "../../../shared/types"
+export type IssueStatus = 'TODO' | 'IN_PROGRESS' | 'DONE';
+
+export type Issue = {
+    id: string;
+    selected?: boolean;
+    summary: string;
+    status: IssueStatus;
+};
 
 export interface IssueState {
     issues: Issue[]
