@@ -41,11 +41,17 @@ export function reducer(state: AppState = initialState, action: AppAction): AppS
             };
         case ActionType.UPDATE_ISSUE_LIST:
             return {
-                issues: state.issues.map(issue => ({
-                    ...issue,
-                    status: issue.selected ? action.data.status : issue.status
-                }))
-            };
+                issues: 
+                    state.issues
+                        .map(issue => ({
+                            ...issue,
+                            status: issue.selected ? action.data.status : issue.status
+                        }))
+                        .sort((a,b) => {
+                            const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
+                            return statusOrder[a.status] - statusOrder[b.status];
+                        })
+                };
         case ActionType.UNSELECT_ALL_ISSUES:
             return {
                 issues: state.issues.map(issue => ({
