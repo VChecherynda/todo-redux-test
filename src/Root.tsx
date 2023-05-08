@@ -2,7 +2,7 @@ import { Page } from "./layout/Page"
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider, store, persistor } from './store'
 
-function App() {
+function Root() {
   return (
     <Provider store={store}>
        <PersistGate loading={null} persistor={persistor}>
@@ -12,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+export default Root
