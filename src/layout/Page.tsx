@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Container } from "react-bootstrap";
 import { List } from "../components/List";    
 import { StatusesForm } from "../widgets";
-import { useOutsideHandler } from "./hooks/useOutsideList";
+import { useOutsideHandler } from "../hooks/useOutsideList";
 
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { ActionType } from "../store/types";
@@ -17,7 +17,7 @@ export function Page() {
         dispatch({ type: ActionType.UNSELECT_ALL_ISSUES })
     }
 
-    useOutsideHandler(containerRef, unselectIssues);
+    useOutsideHandler({ ref: containerRef, outsideHandler: unselectIssues });
 
     setTimeout(() => {
         if(issues.length === 0) {
