@@ -1,11 +1,17 @@
-import { useRef } from "react";
 import { ListGroup } from 'react-bootstrap';
-import { ListItem } from './ListItem';
-import { useAppSelector } from '../../store/hooks';
+import { IssueItem, getIssues, selectIssue } from '../../entities/issue';
+import { useAppDispatch, useAppSelector } from '../../shared/model';
 
-export function List() {
-    const issues = useAppSelector(state => state.issues);
+export function IssueList() {
+    const issues = useAppSelector(getIssues);
+    const dispatch = useAppDispatch();
 
+    const onIssueClick = (event) => {
+        dispatch(selectIssue({
+            selectedId: event.target.id,
+            isMultiple: event.ctrlKey
+        }))
+    }
 
     if (issues.length === 0) {
         return <div>Loading...</div>
@@ -15,10 +21,11 @@ export function List() {
         <ListGroup as="ul">
             {issues.map(issue => (
                 <ListGroup.Item key={issue.id} active={issue.selected} as="li">
-                    <ListItem 
+                    <IssueItem 
                         id={issue.id}
                         summary={issue.summary} 
                         status={issue.status}
+                        onClick={onIssueClick}
                     />
                 </ListGroup.Item>
             ))}

@@ -9,18 +9,17 @@ import {
     PERSIST,
     PURGE,
     REGISTER
-} from 'redux-persist'
+} from 'redux-persist';
+import issueReducer  from '../../entities/issue/model/slice';
 
 import storage from 'redux-persist/lib/storage'; 
-
-import { reducer } from './reducer';
 
 const persistConfig = {
     key: 'root',
     storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, issueReducer)
 
 const store = configureStore({
     reducer: persistedReducer,

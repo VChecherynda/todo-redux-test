@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { ActionType } from "../store/types";
+import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
+import { ActionType } from "../../app/store/types";
 
-export function StatusesForm() {
+export function StatusForm() {
     const [status, setStatus] = useState("TODO");
 
     const issues = useAppSelector(state => state.issues);
@@ -23,7 +23,7 @@ export function StatusesForm() {
         })
     }
 
-    const isIssuesSelected =issues.some(issue => issue.selected === true)
+    const isIssuesSelected = issues.some(issue => issue.selected === true)
 
     return (
         isIssuesSelected ? (
