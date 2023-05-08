@@ -11,7 +11,7 @@ interface ListItemProps {
 export function ListItem({ id, summary, status }: ListItemProps) {
     const dispatch = useAppDispatch();
 
-    const onItemClick = (event) => {
+    const onItemClick = (event: { ctrlKey: boolean }) => {
         dispatch({
             type: ActionType.SELECT_ISSUE,
             data: {
