@@ -10,12 +10,11 @@ export const issueSlice = createSlice({
     initialState,
     reducers: {
         saveIssuesList: (state: IssueState, action: SaveIssuesAction) => {
-            state.issues = 
-                action.payload
-                    .sort((a,b) => {
-                        const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
-                        return statusOrder[a.status] - statusOrder[b.status];
-                    })
+            state.issues = action.payload
+                        .sort((a,b) => {
+                            const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
+                            return statusOrder[a.status] - statusOrder[b.status];
+                        })
         },
         updateSelectedIssues: (state: IssueState, action: UpdateIssuesAction) => {
             state.issues = state.issues
