@@ -21,7 +21,8 @@ export const issueSlice = createSlice({
   initialState,
   reducers: {
     saveIssuesList: (state: IssueState, action: SaveIssuesAction) => {
-      state.issues = action.payload.sort(sortByStatus);
+      state.issues = action.payload;
+      state.issues.sort(sortByStatus);
     },
     startUpdateIssues: (state: IssueState) => {
       state.issues = state.issues.map((issue) => ({
