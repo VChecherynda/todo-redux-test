@@ -28,6 +28,7 @@ export const issueSlice = createSlice({
                     .map(issue => ({
                         ...issue,
                         status: issue.selected ? action.payload : issue.status,
+                        selected: false,
                         loading: false
                     }))
                     .sort((a,b) => {
