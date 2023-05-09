@@ -2,8 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { startUpdateIssues, updateSelectedIssues, IssueStatus, Issue } from "../../entities/issue"
 import { useAppDispatch, useAppSelector } from "../../shared/model";
-
-const STATUSES = ["TODO", "IN_PROGRESS", "DONE"];
+import { STATUSES } from "../../shared/config";
 
 export function StatusForm() {
     const [status, setStatus] = useState(STATUSES[0]);
