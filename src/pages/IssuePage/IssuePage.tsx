@@ -9,7 +9,6 @@ import { StatusForm } from "../../widgets/StatusForm";
 import { IssueList } from "../../widgets/IssueList";
 
 import { useAppDispatch, useAppSelector, useOutsideHandler } from '../../shared/model';
-// import { ActionType } from "../app/store/types";
 import { queryIssues } from "../../shared/api";
 
 export function IssuePage() {

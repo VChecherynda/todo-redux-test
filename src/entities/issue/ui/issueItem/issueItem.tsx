@@ -13,11 +13,7 @@ interface IssueItemProps {
 export function IssueItem({ id, summary, loading, status, onClick }: IssueItemProps) {
     return (
         <Stack id={id} direction="horizontal" gap={3} onClick={onClick}>
-            {loading ? 'Loading...' : (
-                <>
-                   {`${summary} ${status}`}
-                </>
-            )}
+            {loading ? 'Loading...' : `${summary} ${status}`}
         </Stack>
     );
 }

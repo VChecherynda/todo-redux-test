@@ -1,6 +1,6 @@
 export { 
     saveIssuesList,
-    startUpdatingIssues,
+    startUpdateIssues,
     updateSelectedIssues,
     unselectIssues,
     selectIssue,

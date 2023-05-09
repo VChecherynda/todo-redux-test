@@ -1,10 +1,12 @@
 import { ChangeEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { startUpdatingIssues, updateSelectedIssues, IssueStatus } from "../../entities/issue"
+import { startUpdateIssues, updateSelectedIssues, IssueStatus, Issue } from "../../entities/issue"
 import { useAppDispatch, useAppSelector } from "../../shared/model";
 
+const STATUSES = ["TODO", "IN_PROGRESS", "DONE"];
+
 export function StatusForm() {
-    const [status, setStatus] = useState("TODO");
+    const [status, setStatus] = useState(STATUSES[0]);
 
     const issues = useAppSelector(state => state.issues);
     const dispatch = useAppDispatch();
@@ -14,19 +16,17 @@ export function StatusForm() {
     }
 
     const updateStatus = () => {
-        dispatch(startUpdatingIssues());
+        dispatch(startUpdateIssues());
         setTimeout(() => dispatch(updateSelectedIssues(status as IssueStatus)), 1000)
     }
 
-    const isIssuesSelected = issues.some(issue => issue.selected === true)
+    const isIssuesSelected = issues.some((issue: Issue) => issue.selected === true)
 
     return (
         isIssuesSelected ? (
             <Form>
                 <Form.Select aria-label="Status select" onChange={onSelectStatus}>
-                    <option value="TODO">TODO</option>
-                    <option value="IN_PROGRESS">IN PROGRESS</option>
-                    <option value="DONE">DONE</option>
+                    {STATUSES.map((status: string) => <option key={status} value={status}>{status}</option>)}
                 </Form.Select>
 
                 <Button variant="primary" onClick={updateStatus}>Update</Button>

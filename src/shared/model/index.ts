@@ -1,5 +1,5 @@
-import { useOutsideHandler } from "./useOutsideHandler";
-import { useAppSelector } from "./useAppSelector";
-import { useAppDispatch } from "./useAppDispatch";  
+import { useOutsideHandler } from "./hooks/useOutsideHandler";
+import { useAppSelector } from "./hooks/useAppSelector";
+import { useAppDispatch } from "./hooks/useAppDispatch";  
 
 export {  useOutsideHandler, useAppSelector, useAppDispatch }
