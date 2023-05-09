@@ -15,8 +15,7 @@ export function IssueItem({ id, summary, loading, status, onClick }: IssueItemPr
         <Stack id={id} direction="horizontal" gap={3} onClick={onClick}>
             {loading ? 'Loading...' : (
                 <>
-                    <div>{summary}</div>
-                    <div>{status}</div> 
+                   {`${summary} ${status}`}
                 </>
             )}
         </Stack>
