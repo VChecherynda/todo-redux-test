@@ -28,6 +28,7 @@ export function IssueList() {
                         id={issue.id}
                         summary={issue.summary} 
                         status={issue.status}
+                        loading={issue.loading}
                         onClick={onIssueClick}
                     />
                 </ListGroup.Item>

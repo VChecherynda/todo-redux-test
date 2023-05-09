@@ -27,12 +27,6 @@ export function IssuePage() {
         queryIssues().then(issues => {
             dispatch(saveIssuesList(issues))
         });
-
-
-        // dispatch({
-        //     type: ActionType.SAVE_ISSUE_LIST,
-        //     data: mockServerDB.issues
-        // })
     }
 
     return (

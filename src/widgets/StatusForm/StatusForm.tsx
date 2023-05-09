@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { updateSelectedIssues, IssueStatus } from "../../entities/issue"
+import { startUpdatingIssues, updateSelectedIssues, IssueStatus } from "../../entities/issue"
 import { useAppDispatch, useAppSelector } from "../../shared/model";
 
 export function StatusForm() {
@@ -14,7 +14,8 @@ export function StatusForm() {
     }
 
     const updateStatus = () => {
-        dispatch(updateSelectedIssues(status as IssueStatus))
+        dispatch(startUpdatingIssues());
+        setTimeout(() => dispatch(updateSelectedIssues(status as IssueStatus)), 1000)
     }
 
     const isIssuesSelected = issues.some(issue => issue.selected === true)

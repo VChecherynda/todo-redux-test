@@ -5,15 +5,20 @@ import { IssueStatus } from "../../../../entities/issue";
 interface IssueItemProps {
     id: string
     summary: string
-    status: IssueStatus
+    loading?: boolean
+    status?: IssueStatus
     onClick: (event: MouseEvent<HTMLElement>) => void
 }
 
-export function IssueItem({ id, summary, status, onClick }: IssueItemProps) {
+export function IssueItem({ id, summary, loading, status, onClick }: IssueItemProps) {
     return (
         <Stack id={id} direction="horizontal" gap={3} onClick={onClick}>
-            <div>{summary}</div>
-            <div>{status}</div> 
+            {loading ? 'Loading...' : (
+                <>
+                    <div>{summary}</div>
+                    <div>{status}</div> 
+                </>
+            )}
         </Stack>
     );
 }

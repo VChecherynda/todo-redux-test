@@ -3,6 +3,7 @@ export type IssueStatus = 'TODO' | 'IN_PROGRESS' | 'DONE';
 export type Issue = {
     id: string;
     selected?: boolean;
+    loading?: boolean;
     summary: string;
     status: IssueStatus;
 };
