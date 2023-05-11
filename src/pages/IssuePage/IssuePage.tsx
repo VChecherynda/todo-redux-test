@@ -26,6 +26,7 @@ export function IssuePage() {
         queryIssues().then(issues => {
             dispatch(saveIssuesList(issues))
         });
+        // TODO Так робити не можна. Запити до API треба робити в useEffect. А що буде, коли queryIssues поверне пустий масив?
     }
 
     return (

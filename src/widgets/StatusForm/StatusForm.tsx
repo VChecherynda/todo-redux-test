@@ -6,6 +6,7 @@ import { STATUSES } from "../../shared/config";
 
 export function StatusForm() {
     const [status, setStatus] = useState(STATUSES[0]);
+    // TODO Можна було типізувати STATUSES (і сам state) щоб потім не використовувати as IssueStatus
 
     const issues = useAppSelector(state => state.issues);
     const dispatch = useAppDispatch();
@@ -17,6 +18,8 @@ export function StatusForm() {
     const updateStatus = () => {
         dispatch(startUpdateIssues());
         setTimeout(() => dispatch(updateSelectedIssues(status as IssueStatus)), 1000)
+      // TODO Повинно бути використання API методу, щоб зберегти статус задачі. Зараз все зберігаэться в persisted store,
+      //  тому здаэться, що все працюэ як треба, але це не так.
     }
 
     const isIssuesSelected = issues.some((issue: Issue) => issue.selected === true)
