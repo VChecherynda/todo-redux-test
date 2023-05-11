@@ -14,10 +14,12 @@ export function IssueList() {
             selectedId: target.id,
             isMultiple: event.ctrlKey
         }))
+        // TODO Через Ctrl я можу лише виділити, а відмінити один айтем не можу
     }
 
     if (issues.length === 0) {
         return <div>Loading...</div>
+        // TODO А якщо список задач пустий в базі?
     }
     
     return (

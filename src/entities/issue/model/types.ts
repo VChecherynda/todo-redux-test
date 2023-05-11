@@ -4,6 +4,7 @@ export type Issue = {
     id: string;
     selected?: boolean;
     loading?: boolean;
+    // TODO Змішувати модель данних з стейтом який відповідає за візуалізацію стану - погана ідея
     summary: string;
     status: IssueStatus;
 };

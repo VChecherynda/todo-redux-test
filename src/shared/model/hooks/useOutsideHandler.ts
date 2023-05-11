@@ -6,11 +6,15 @@ interface OutsideHandlerData {
 }
 
 export function useOutsideHandler({ ref, outsideHandler }: OutsideHandlerData) {
+    // TODO Цей эфект буде спрацьювуваит на кожен перерендер, кожного разу буде addEventListener + removeEventListener
+
     useEffect(() => {
         function clickOutsideList(event: Event) {
 
             if (ref.current && !ref.current.contains(event.target as Node)) {
-                outsideHandler()              
+                // TODO Такий спосіб працює не так як треба. Що буде якщо клікнути між айтемами (зараз там відступів нема, але..)?
+                //  Або якщо форму розмістити не в контейнері зі списком задач, а десь в модалці в порталі?
+                outsideHandler()
             }
         }7
 

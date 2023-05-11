@@ -8,6 +8,8 @@ import {
 } from "./types";
 
 function sortByStatus(a: Issue, b: Issue) {
+  // TODO Обєкт statusOrder буде створюватись на кожній ітераціі, краще винисти його в константу з функціі.
+  //  І не вистачає типізаціі, бо яещо добавиться або поміняэться статус, тут помилки не буде
   const statusOrder = { IN_PROGRESS: 1, TODO: 2, DONE: 3 };
   return statusOrder[a.status] - statusOrder[b.status];
 }
@@ -22,7 +24,7 @@ export const issueSlice = createSlice({
   reducers: {
     saveIssuesList: (state: IssueState, action: SaveIssuesAction) => {
       state.issues = action.payload;
-      state.issues.sort(sortByStatus);
+      state.issues.sort(sortByStatus); // TODO Тут буде мутація action.payload, краще так не робити, бо може вилізти боком
     },
     startUpdateIssues: (state: IssueState) => {
       state.issues = state.issues.map((issue) => ({
